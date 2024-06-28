@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 // importing from public
 import logo from "@/public/amazon-logo-2.webp";
@@ -7,10 +8,16 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { IoSearchSharp } from "react-icons/io5";
 import { PiShoppingCartSimpleLight } from "react-icons/pi";
 import { RiMenuSearchFill } from "react-icons/ri";
-
 // import constants--item list
 import { items } from "@/constants/constants";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 const Navbar = () => {
+  const [query, setquery] = useState<string>("");
+  const route = useRouter();
+  const handleSearch = () => {
+    route.push(`/search/${query}`);
+  };
   return (
     <div className="">
       {/* Navbar */}
@@ -18,7 +25,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between text-white px-[4%] py-2 bg-[#131921]">
           {/* logo */}
           <div className="w-[6rem] cursor-pointer">
-            <Image alt="logo" src={logo} />
+            <Link href={`/`}>
+              <Image alt="logo" src={logo} />
+            </Link>
           </div>
           {/* Search */}
           <div className="flex items-center justify-center w-[40rem]">
@@ -30,12 +39,17 @@ const Navbar = () => {
             </div>
             <div className="w-full">
               <input
+                value={query}
+                onChange={(e) => setquery(e.target.value)}
                 type="text"
                 className="w-full outline-none p-2 text-black text-md"
                 placeholder="Search Amazon"
               />
             </div>
-            <div className="bg-[#F3A847] p-2 rounded-r-sm">
+            <div
+              onClick={handleSearch}
+              className="bg-[#F3A847] p-2 rounded-r-sm"
+            >
               <span>
                 <IoSearchSharp
                   size={24}
