@@ -4,6 +4,7 @@ import { superbase } from "../products";
 export const useSuperbase = () => {
   const [products, setproducts] = useState<any>([]);
   const [filterData, setfilterData] = useState<any>([]);
+  const [singlePrdct, setsinglePrdct] = useState<any>([]);
   const getDataFromSuperbase = async () => {
     let { data, error } = await superbase.from("products").select("*");
     if (data) {
@@ -25,5 +26,24 @@ export const useSuperbase = () => {
       console.log(error);
     }
   };
-  return { products, getDataFromSuperbase, getFilterData, filterData };
+  const getsingleProduct = async (id: number) => {
+    const { data, error } = await superbase
+      .from("products")
+      .select("*").eq('id', id)
+      
+    if (data) {
+      setsinglePrdct(data);
+      console.log(data);
+    } else if (error) {
+      console.log(error);
+    }
+  };
+  return {
+    products,
+    getDataFromSuperbase,
+    getFilterData,
+    filterData,
+    singlePrdct,
+    getsingleProduct,
+  };
 };

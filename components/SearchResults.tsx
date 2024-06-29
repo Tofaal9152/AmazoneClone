@@ -18,7 +18,7 @@ const SearchResults = ({ filterData }: { filterData: any }) => {
           <div className="grid grid-cols-4 gap-3">
             {filterData.map((items: any, index: number) => {
               return (
-                <Link href={`/clickedproguct/${items.id}`}>
+                <Link href={`/clickedproduct/${items.id}`}>
                   <Card items={items} />
                 </Link>
               );

@@ -48,13 +48,10 @@ const Navbar = () => {
             </div>
             <div
               onClick={handleSearch}
-              className="bg-[#F3A847] p-2 rounded-r-sm"
+              className="bg-[#F3A847] p-2 rounded-r-sm cursor-pointer hover:bg-[#df912c]"
             >
               <span>
-                <IoSearchSharp
-                  size={24}
-                  className="text-black cursor-pointer"
-                />
+                <IoSearchSharp size={24} className="text-black" />
               </span>
             </div>
           </div>
