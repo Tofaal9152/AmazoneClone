@@ -4,6 +4,7 @@ import { FaStar } from "react-icons/fa";
 import { FaStarHalfAlt } from "react-icons/fa";
 
 const Rating = ({ items }: { items: any }) => {
+  // convert to object
   const rating = JSON.parse(items.rating);
   return (
     <div>

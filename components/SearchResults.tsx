@@ -1,10 +1,11 @@
 import React from "react";
+// Components
 import Card from "./Card";
+// Router
 import Link from "next/link";
 
 const SearchResults = ({ filterData }: { filterData: any }) => {
-  console.log(filterData);
-
+  
   return (
     <div>
       <section className="mt-[3rem] ml-[7rem]">

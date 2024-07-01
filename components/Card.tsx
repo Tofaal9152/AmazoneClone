@@ -1,6 +1,8 @@
-import Image from "next/image";
 import React from "react";
+// Components
 import Rating from "./Rating";
+// Assets
+import Image from "next/image";
 
 const Card = ({ items }: { items: any }) => {
   
@@ -16,10 +18,7 @@ const Card = ({ items }: { items: any }) => {
             src={items.image}
           />
         </div>
-        <h1 className="text-xl font-semibold">{`${items.title.substring(
-          0,
-          30
-        )}...`}</h1>
+        <h1 className="text-xl font-semibold">{`${items.title.substring(0,30)}...`}</h1>
         <p className="font-bold text-lg">{`$${items.price}`}</p>
         <div>
           <Rating items={items} />

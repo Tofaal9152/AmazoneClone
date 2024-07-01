@@ -1,25 +1,32 @@
 "use client";
 import React, { useState } from "react";
+// constants
+import { items } from "@/constants/constants";
+// importing from public || images
 import Image from "next/image";
-// importing from public
 import logo from "@/public/amazon-logo-2.webp";
 // Importing from rect icons
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoSearchSharp } from "react-icons/io5";
 import { PiShoppingCartSimpleLight } from "react-icons/pi";
 import { RiMenuSearchFill } from "react-icons/ri";
-// import constants--item list
-import { items } from "@/constants/constants";
-import { useRouter } from "next/navigation";
+// Router
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+// Redux
+import { useAppSelector } from "@/redux/hooks";
+import { getCart } from "@/redux/counterSlice";
+
 const Navbar = () => {
+  // useState
   const [query, setquery] = useState<string>("");
-  const route = useRouter();
-  const handleSearch = () => {
-    route.push(`/search/${query}`);
-  };
+  // Router
+  const router = useRouter();
+  // Redux
+  const cart = useAppSelector(getCart);
+  // Start
   return (
-    <div className="">
+    <div>
       {/* Navbar */}
       <section>
         <div className="flex items-center justify-between text-white px-[4%] py-2 bg-[#131921]">
@@ -47,7 +54,7 @@ const Navbar = () => {
               />
             </div>
             <div
-              onClick={handleSearch}
+              onClick={() => router.push(`/search/${query}`)}
               className="bg-[#F3A847] p-2 rounded-r-sm cursor-pointer hover:bg-[#df912c]"
             >
               <span>
@@ -68,7 +75,7 @@ const Navbar = () => {
             <div className="border border-transparent hover:border-white p-1 cursor-pointer flex items-end">
               <div className="relative">
                 <span className="absolute  top-[-0.66rem] right-2 text-[#F3A847]">
-                  0
+                  {cart.length}
                 </span>
                 <span>
                   <PiShoppingCartSimpleLight size={35} />

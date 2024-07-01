@@ -1,8 +1,16 @@
-import Image from "next/image";
 import React from "react";
+// components
 import Rating from "./Rating";
+// Image
+import Image from "next/image";
+// redux
+import { useAppDispatch } from "@/redux/hooks";
+import { setcart } from "@/redux/counterSlice";
 
 const SingleProducts = ({ singlePrdct }: { singlePrdct: any }) => {
+
+  const dispatch =useAppDispatch()
+  
   return (
     <div className="container mx-auto py-8">
       <section className="p-8 rounded-lg">
@@ -33,7 +41,10 @@ const SingleProducts = ({ singlePrdct }: { singlePrdct: any }) => {
                   <div className="font-bold text-xl text-gray-800 mb-4">{`$${item.price}`}</div>
                 </div>
                 <div className="flex space-x-3">
-                  <div className="px-2 font-medium rounded-md py-1 text-black text-md cursor-pointer bg-[#  ] hover:bg-[#FFA41C]">
+                  <div
+                    onClick={() => dispatch(setcart(item))}
+                    className="px-2 font-medium rounded-md py-1 text-black text-md cursor-pointer bg-[#FFD814] hover:bg-[#FFA41C]"
+                  >
                     Add to Cart
                   </div>
                   <div className="px-2 font-medium rounded-md py-1 text-black text-md cursor-pointer bg-[#FFA41C] hover:bg-[#FFD814]">
