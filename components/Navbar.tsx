@@ -72,7 +72,10 @@ const Navbar = () => {
               <div className="text-xs">Returs</div>
               <h2 className="text-sm font-semibold">& Orders</h2>
             </div>
-            <div className="border border-transparent hover:border-white p-1 cursor-pointer flex items-end">
+            <div
+              onClick={() => router.push("/cartpage")}
+              className="border border-transparent hover:border-white p-1 cursor-pointer flex items-end"
+            >
               <div className="relative">
                 <span className="absolute  top-[-0.66rem] right-2 text-[#F3A847]">
                   {cart.length}
