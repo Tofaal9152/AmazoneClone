@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import {ReduxProvider} from "@/components/ReduxProvider";
+import { ReduxProvider } from "@/components/ReduxProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +20,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ReduxProvider>
-          <Navbar />
-        {children}
+          <div className="sticky top-0 bg-[#131921] z-10">
+            <Navbar />
+          </div>
+          {children}
         </ReduxProvider>
       </body>
     </html>

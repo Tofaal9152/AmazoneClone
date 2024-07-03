@@ -11,7 +11,6 @@ const page = () => {
   useEffect(() => {
     getsingleProduct(Number(id));
   }, []);
-  console.log(id);
 
   return (
     <div>

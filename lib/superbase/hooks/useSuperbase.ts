@@ -5,11 +5,12 @@ export const useSuperbase = () => {
   const [products, setproducts] = useState<any>([]);
   const [filterData, setfilterData] = useState<any>([]);
   const [singlePrdct, setsinglePrdct] = useState<any>([]);
+  const [menCat, setmenCat] = useState<any>([]);
+  const [womenCat, setwomenCat] = useState<any>([]);
   const getDataFromSuperbase = async () => {
     let { data, error } = await superbase.from("products").select("*");
     if (data) {
       setproducts(data);
-      console.log(data);
     } else if (error) {
       console.log(error);
     }
@@ -18,10 +19,11 @@ export const useSuperbase = () => {
     const { data, error } = await superbase
       .from("products")
       .select("*")
-      .or(`title.ilike.%${query}%,description.ilike.%${query}%,category.ilike.%${query}%`);
+      .or(
+        `title.ilike.%${query}%,description.ilike.%${query}%,category.ilike.%${query}%`
+      );
     if (data) {
       setfilterData(data);
-      console.log(data);
     } else if (error) {
       console.log(error);
     }
@@ -29,11 +31,35 @@ export const useSuperbase = () => {
   const getsingleProduct = async (id: number) => {
     const { data, error } = await superbase
       .from("products")
-      .select("*").eq('id', id)
-      
+      .select("*")
+      .eq("id", id);
+
     if (data) {
       setsinglePrdct(data);
-      console.log(data);
+    } else if (error) {
+      console.log(error);
+    }
+  };
+  const mensCategory = async () => {
+    const { data, error } = await superbase
+      .from("products")
+      .select("*")
+      .ilike(`category`, `%men's clothing%`);
+
+    if (data) {
+      setmenCat(data);
+    } else if (error) {
+      console.log(error);
+    }
+  };
+  const womensCategory = async () => {
+    const { data, error } = await superbase
+      .from("products")
+      .select("*")
+      .ilike(`category`, `%women's clothing%`);
+
+    if (data) {
+      setwomenCat(data);
     } else if (error) {
       console.log(error);
     }
@@ -45,5 +71,9 @@ export const useSuperbase = () => {
     filterData,
     singlePrdct,
     getsingleProduct,
+    mensCategory,
+    womensCategory,
+    menCat,
+    womenCat,
   };
 };

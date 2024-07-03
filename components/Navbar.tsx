@@ -26,7 +26,7 @@ const Navbar = () => {
   const cart = useAppSelector(getCart);
   // Start
   return (
-    <div>
+    <div >
       {/* Navbar */}
       <section>
         <div className="flex items-center justify-between text-white px-[4%] py-2 bg-[#131921]">
