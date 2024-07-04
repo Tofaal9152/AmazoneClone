@@ -1,5 +1,5 @@
 "use client";
-import SingleProducts from "@/components/SingleProducts";
+import SingleProducts from "../SingleProducts";
 import { useSuperbase } from "@/lib/superbase/hooks/useSuperbase";
 import Image from "next/image";
 import { useParams } from "next/navigation";

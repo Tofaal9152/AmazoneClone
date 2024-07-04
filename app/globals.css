@@ -1,6 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*{
-    background-color: ;
+.divcenter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.divbetween{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

@@ -7,11 +7,13 @@ import {
 } from "@/redux/counterSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const CartPage = () => {
   const cartItems = useAppSelector(getCart);
   const dispatch = useAppDispatch();
+  const router =useRouter()
   let totalAmount = 0;
   cartItems.forEach((item: any) => {
     totalAmount += item.price * item.quantity;
@@ -104,6 +106,7 @@ const CartPage = () => {
           <span className="font-semibold text-lg">{`$${totalAmount}`}</span>
         </div>
         <div
+          onClick={() => router.push("/checkout")}
           className="px-2 text-center font-bold duration-300 rounded-md py-1
           text-black text-md cursor-pointer bg-[#FFD814] hover:bg-[#FFA41C]
           mt-[1rem]"

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // constants
 import { items } from "@/constants/constants";
 // importing from public || images
@@ -16,17 +16,29 @@ import { useRouter } from "next/navigation";
 // Redux
 import { useAppSelector } from "@/redux/hooks";
 import { getCart } from "@/redux/counterSlice";
+import { superbase } from "@/lib/superbase/products";
 
 const Navbar = () => {
   // useState
-  const [query, setquery] = useState<string>("");
+  const [query, setquery] = useState<string>('');
+  const [user, setuser] = useState<any>(null);
   // Router
   const router = useRouter();
   // Redux
   const cart = useAppSelector(getCart);
+  // Auth user
+useEffect(() => {
+  const getUserData=async()=>{
+    const {data:{user}} =await superbase.auth.getUser();
+    setuser(user);
+  }
+  getUserData()
+}, [])
+console.log(user);
+
   // Start
   return (
-    <div >
+    <div>
       {/* Navbar */}
       <section>
         <div className="flex items-center justify-between text-white px-[4%] py-2 bg-[#131921]">
@@ -55,7 +67,7 @@ const Navbar = () => {
             </div>
             <div
               onClick={() => router.push(`/search/${query}`)}
-              className="bg-[#F3A847] p-2 rounded-r-sm cursor-pointer hover:bg-[#df912c]"
+              className="bg-[#F3A847] p-2 rounded-r-sm cursor-pointer duration-300 hover:bg-[#df912c]"
             >
               <span>
                 <IoSearchSharp size={24} className="text-black" />
@@ -65,7 +77,15 @@ const Navbar = () => {
           {/* cart */}
           <div className="flex space-x-3">
             <div className="border border-transparent hover:border-white p-1 cursor-pointer">
-              <div className="text-xs">Helllo,sign in</div>
+              {/* <Image width={1000} height={1000} src={user.user_metadata.avatar_url} alt="avater" /> */}
+              <div
+                onClick={() => router.push("/signin")}
+                className="text-xs hover:underline"
+              >
+                {user
+                  ? user.identities[0].identity_data.full_name
+                  : "Helllo,sign in"}
+              </div>
               <h2 className="text-sm font-semibold">Accounts & Lists</h2>
             </div>
             <div className="border border-transparent hover:border-white p-1 cursor-pointer">
@@ -107,7 +127,10 @@ const Navbar = () => {
               );
             })}
           </div>
-          <div className="px-1 font-semibold rounded-sm py-1 text-black text-xs cursor-pointer bg-[#F3A847]">
+          <div onClick={async()=>{
+            const {error} = await superbase.auth.signOut()
+            router.push('/signin')
+          }} className="px-1 font-semibold rounded-sm py-1 text-black text-xs cursor-pointer hover:bg-[#df912c] duration-300 bg-[#F3A847]">
             Sign out
           </div>
         </div>

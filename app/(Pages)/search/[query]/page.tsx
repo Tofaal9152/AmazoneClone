@@ -1,5 +1,5 @@
 "use client";
-import SearchResults from "@/components/SearchResults";
+import SearchResults from "../SearchResults";
 import { useSuperbase } from "@/lib/superbase/hooks/useSuperbase";
 import { useParams } from "next/navigation";
 import React, { useEffect } from "react";

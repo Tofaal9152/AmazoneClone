@@ -1,6 +1,6 @@
 import React from "react";
 // Components
-import Rating from "./Rating";
+import Rating from "@/app/Components/Ratings/Rating";
 // Assets
 import Image from "next/image";
 

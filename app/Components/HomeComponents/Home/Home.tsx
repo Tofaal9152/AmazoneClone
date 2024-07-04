@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import React, { useEffect } from "react";
-import Categorywise from "./Categorywise";
+import Categorywise from "../Categorywise/Categorywise";
 
 
 const Home = () => {

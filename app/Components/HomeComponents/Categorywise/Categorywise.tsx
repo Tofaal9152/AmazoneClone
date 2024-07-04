@@ -1,9 +1,7 @@
 "use client";
 import { useSuperbase } from "@/lib/superbase/hooks/useSuperbase";
-import Image from "next/image";
 import React, { useEffect } from "react";
-import Rating from "./Rating";
-import HomePageCard from "./HomePageCard";
+import HomePageCard from "./HomePageCard/HomePageCard";
 
 const Categorywise = () => {
   const { mensCategory, womensCategory, menCat, womenCat } = useSuperbase();

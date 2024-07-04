@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import Rating from "./Rating";
+import Rating from "@/app/Components/Ratings/Rating";
 import { useAppDispatch } from "@/redux/hooks";
 import { setcart } from "@/redux/counterSlice";
 import { useRouter } from "next/navigation";

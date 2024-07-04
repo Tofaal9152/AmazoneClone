@@ -1,6 +1,6 @@
 import React from "react";
 // components
-import Rating from "./Rating";
+import Rating from "@/app/Components/Ratings/Rating";
 // Image
 import Image from "next/image";
 // redux
